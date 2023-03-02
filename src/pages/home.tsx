@@ -4,12 +4,12 @@ import { AppContext } from '../../context';
 import PageContainer from '../templates/page_container';
 
 const Home = () => {
-const { isSeller } = useContext(AppContext);
+const { isMerchant } = useContext(AppContext);
 
   return (
     <PageContainer>
         {
-        isSeller ? 
+        isMerchant ? 
             <View>Je suis un vendeur</View>
             //ici la liste de mes boutiques
         : 
