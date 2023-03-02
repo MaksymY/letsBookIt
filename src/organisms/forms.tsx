@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, Button, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, TextInput, Button, TouchableOpacity, StyleSheet, CheckBox } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { API_URL } from '@env'
 
@@ -9,6 +9,7 @@ const LoginForm = () => {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [email, setEmail] = useState('');
+  const [isSelected, setSelection] = useState(false);
   const navigation = useNavigation();
 
 
@@ -17,7 +18,6 @@ const LoginForm = () => {
     // Refacto later
     console.log(API_URL)
     navigation.navigate('Home');
-    
   };
 
   const renderForm = () => {
@@ -49,6 +49,14 @@ const LoginForm = () => {
             secureTextEntry
             style={styles.input}
           />
+          <View style={styles.checkboxContainer}>
+            <CheckBox
+              value={isSelected}
+              onValueChange={setSelection}
+              style={styles.checkbox}
+            />
+            <Text style={styles.label_checkbox}>Professionnel</Text>
+          </View>
           <Button title="S'inscrire" onPress={handleSubmit} />
         </>
       );
@@ -103,6 +111,17 @@ const styles = StyleSheet.create({
       fontSize: 16,
       fontWeight: 'bold',
       marginBottom: 5,
+    },
+    checkboxContainer: {
+      flexDirection: 'row',
+      marginBottom: 20,
+    },
+    checkbox: {
+      alignSelf: 'center',
+    },
+    label_checkbox:{
+      marginLeft: 5,
+      fontWeight: 'bold',
     },
     input: {
       fontSize: 16,
