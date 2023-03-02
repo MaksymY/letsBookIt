@@ -12,14 +12,21 @@ const LoginForm = () => {
   const [isSelected, setSelection] = useState(false);
   const navigation = useNavigation();
 
-  const postData = async () => {
+  const payload_account  = {
+    username: username,
+    password: password,
+    email: email,
+    ismerchant: isSelected
+  }
+
+  const payload_login = {
+    username: username,
+    password: password,
+  }
+
+  const postRegister = async (data: object, path: string) => {
     try {
-      const response = await api.post('/register', {
-        username: username,
-        password: password,
-        email: email,
-        ismerchant: isSelected
-      });
+      const response = await api.post(`/${path}`, data);
       console.log(response.data);
       navigation.navigate('Home');
     } catch (error) {
@@ -29,7 +36,9 @@ const LoginForm = () => {
 
   const handleSubmit = () => {
     // Handle form submission
-    postData()
+    const path = isSelected ? "register" : "login";
+    const data = isSelected ? payload_account : payload_login;
+    postRegister(data, path);
   };
 
   const renderForm = () => {
