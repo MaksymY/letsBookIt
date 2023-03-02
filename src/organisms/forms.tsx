@@ -39,6 +39,7 @@ const LoginForm = () => {
     const path = isSelected ? "register" : "login";
     const data = isSelected ? payload_account : payload_login;
     postRegister(data, path);
+    navigation.navigate('Home');
   };
 
   const renderForm = () => {
