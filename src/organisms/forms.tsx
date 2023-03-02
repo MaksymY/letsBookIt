@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { View, Text, TextInput, Button, TouchableOpacity, StyleSheet, CheckBox } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import { AppContext } from '../../context';
 import api from '../utils/api';
 
 const LoginForm = () => {
@@ -11,6 +12,7 @@ const LoginForm = () => {
   const [email, setEmail] = useState('');
   const [isSelected, setSelection] = useState(false);
   const navigation = useNavigation();
+  const { isMerchant, setIsMerchant } = useContext(AppContext);
 
   const payload_account  = {
     username: username,
@@ -28,6 +30,7 @@ const LoginForm = () => {
     try {
       const response = await api.post(`/${path}`, data);
       console.log(response.data);
+      setIsMerchant(!isMerchant);
       navigation.navigate('Home');
     } catch (error) {
       console.error(error);

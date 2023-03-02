@@ -1,13 +1,13 @@
 import React, { createContext, useState } from 'react';
 
 interface AppContextInterface {
-  isSeller: boolean;
-  setIsSeller: React.Dispatch<React.SetStateAction<boolean>>;
+  isMerchant: boolean;
+  setIsMerchant: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export const AppContext = createContext<AppContextInterface>({
-  isSeller: false,
-  setIsSeller: () => {},
+  isMerchant: false,
+  setIsMerchant: () => {},
 });
 
 interface Props {
@@ -15,10 +15,10 @@ interface Props {
 }
 
 export const AppContextProvider = ({ children }: Props) => {
-  const [isSeller, setIsSeller] = useState(true);
+  const [isMerchant, setIsMerchant] = useState(false);
 
   return (
-    <AppContext.Provider value={{ isSeller, setIsSeller }}>
+    <AppContext.Provider value={{ isMerchant, setIsMerchant }}>
       {children}
     </AppContext.Provider>
   );
