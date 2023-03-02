@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, Button, TouchableOpacity, StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import { API_URL } from '@env'
 
 const LoginForm = () => {
   const [isSignUp, setIsSignUp] = useState(false);
@@ -14,8 +15,9 @@ const LoginForm = () => {
   const handleSubmit = () => {
     // Handle form submission
     // Refacto later
+    console.log(API_URL)
     navigation.navigate('Home');
-
+    
   };
 
   const renderForm = () => {
