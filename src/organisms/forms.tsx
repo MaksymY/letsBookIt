@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, Button, TouchableOpacity, StyleSheet, CheckBox } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import { API_URL } from '@env'
+import api from '../utils/api';
 
 const LoginForm = () => {
   const [isSignUp, setIsSignUp] = useState(false);
@@ -12,12 +12,24 @@ const LoginForm = () => {
   const [isSelected, setSelection] = useState(false);
   const navigation = useNavigation();
 
+  const postData = async () => {
+    try {
+      const response = await api.post('/register', {
+        username: username,
+        password: password,
+        email: email,
+        ismerchant: isSelected
+      });
+      console.log(response.data);
+      navigation.navigate('Home');
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   const handleSubmit = () => {
     // Handle form submission
-    // Refacto later
-    console.log(API_URL)
-    navigation.navigate('Home');
+    postData()
   };
 
   const renderForm = () => {
