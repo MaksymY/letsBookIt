@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, Button, TouchableOpacity, StyleSheet } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 const LoginForm = () => {
   const [isSignUp, setIsSignUp] = useState(false);
@@ -7,9 +8,14 @@ const LoginForm = () => {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [email, setEmail] = useState('');
+  const navigation = useNavigation();
+
 
   const handleSubmit = () => {
     // Handle form submission
+    // Refacto later
+    navigation.navigate('Home');
+
   };
 
   const renderForm = () => {
