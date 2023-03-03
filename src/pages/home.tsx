@@ -12,7 +12,6 @@ const { isMerchant } = useContext(AppContext);
         {
         isMerchant ? 
             <>
-                <Text>Je suis un vendeur</Text>
                 <ShopList/>
             </>
 

@@ -14,7 +14,8 @@ const ShopList = () => {
         'Content-Type': 'application/json',
     };
     try {
-          const response = await api.post(`/shops`, { headers });
+          const response = await api.get(`/shops`, {headers});
+          console.log(response.data)
           setShops(response.data)
     } catch (error) {
         console.error(error);
@@ -26,8 +27,9 @@ const ShopList = () => {
 
   const renderItem = ({ item }) => (
     <View style={styles.shopContainer}>
-      <Text style={styles.shopName}>{item.name}</Text>
-      <Text style={styles.shopAddress}>{item.address}</Text>
+      <Text style={styles.shopName}>{item.Name}</Text>
+      <Text style={styles.shopName}>{item.Reservation}</Text>
+      <Text style={styles.shopAddress}>{item.Address}</Text>
     </View>
   );
 
@@ -35,7 +37,7 @@ const ShopList = () => {
     <FlatList
       data={shops}
       renderItem={renderItem}
-      keyExtractor={item => item.id.toString()}
+      keyExtractor={(item, index) => index.toString()}
     />
   );
 };
@@ -43,8 +45,10 @@ const ShopList = () => {
 const styles = StyleSheet.create({
   shopContainer: {
     padding: 10,
+    margin: 10,
     borderBottomWidth: 1,
     borderBottomColor: '#ccc',
+    backgroundColor: '#fff'
   },
   shopName: {
     fontWeight: 'bold',
