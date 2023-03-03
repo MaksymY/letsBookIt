@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
 import { AppContext } from '../../context';
 import ShopList from '../organisms/myShopList';
 import PageContainer from '../templates/page_container';
@@ -12,6 +12,7 @@ const { isMerchant } = useContext(AppContext);
         {
         isMerchant ? 
             <>
+                <Text  style={styles.title}>Mes boutiques:</Text>
                 <ShopList/>
             </>
 
@@ -23,4 +24,14 @@ const { isMerchant } = useContext(AppContext);
   );
 };
 
-export default Home;
+
+const styles = StyleSheet.create({
+    title: {
+      fontSize: 14,
+      fontWeight: 'bold',
+      margin: 10,
+      color: '#666',
+    },
+});
+
+export default Home;   
