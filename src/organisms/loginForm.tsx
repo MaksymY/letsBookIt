@@ -3,6 +3,7 @@ import { View, Text, TextInput, Button, TouchableOpacity, StyleSheet, CheckBox }
 import { useNavigation } from '@react-navigation/native';
 import { AppContext } from '../../context';
 import api from '../utils/api';
+import { storeToken } from '../utils/token';
 
 const LoginForm = () => {
   const [isSignUp, setIsSignUp] = useState(false);
@@ -29,8 +30,9 @@ const LoginForm = () => {
   const postRegister = async (data: object, path: string) => {
     try {
       const response = await api.post(`/${path}`, data);
-      console.log(response.data);
-      setIsMerchant(!isMerchant);
+      console.log(response.data)
+      setIsMerchant(response.data.user.isMerchant);
+      storeToken(response.data.token)
       navigation.navigate('Home');
     } catch (error) {
       console.error(error);
@@ -42,7 +44,6 @@ const LoginForm = () => {
     const path = isSelected ? "register" : "login";
     const data = isSelected ? payload_account : payload_login;
     postRegister(data, path);
-    navigation.navigate('Home');
   };
 
   const renderForm = () => {

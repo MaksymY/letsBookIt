@@ -1,6 +1,6 @@
 import React from 'react';
 import Page_container from '../templates/page_container';
-import LoginForm from '../organisms/forms';
+import LoginForm from '../organisms/loginForm';
 
 const Login = () => {
     return (
